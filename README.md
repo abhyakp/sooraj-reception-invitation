@@ -70,7 +70,7 @@ The page is indexable by default. To keep it out of Google while still sharing b
 
 ## Customising
 
-- **Colours and fonts**: CSS variables at the top of `css/style.css` (blush, rose, mauve, sage). Fonts: Pinyon Script, Cormorant Garamond, Montserrat.
+- **Colours and fonts**: CSS variables at the top of `css/style.css` (blush, rose, mauve, sage). Fonts: Allura (names and script headings), Cormorant Garamond, Montserrat.
 - **Flowers**: all florals are inline SVG symbols in the sprite at the top of `index.html` (`f-rose`, `f-rose-peach`, `f-blossom`, `f-bud`, `f-leaf`, `f-euca`, composed into `f-spray` and `f-divider`). No image downloads.
 - **Text**: plain HTML in `index.html`; countdown messages in `js/script.js`.
 - **Couple photo**: shown in the arch. Replace `assets/images/couple-720.webp` (720×900), `couple-1200.webp` and `couple-1200.jpg` (1200×1500) at the same names, keeping a 4:5 crop.

@@ -21,7 +21,7 @@
 
   --font-head: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-script: "Pinyon Script", "Snell Roundhand", "Brush Script MT", cursive;
+  --font-script: "Allura", "Snell Roundhand", "Brush Script MT", cursive;
 
   --gutter: 16px;
   --max: 1080px;
@@ -109,12 +109,12 @@ a { color: var(--rose-deep); }
 .hero__eyebrow { animation: fadeUp 1s .2s var(--ease) both; }
 .hero__names {
   font-family: var(--font-script); font-weight: 400; color: var(--mauve);
-  font-size: clamp(3.4rem, 16vw, 6rem); line-height: 1.1;
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 .22em;
+  font-size: clamp(3.6rem, 17vw, 6.2rem); line-height: 1.1;
+  display: flex; flex-direction: column; align-items: center;
 }
 .hero__name { display: block; animation: nameReveal 1.3s var(--ease) both; }
 .hero__name:last-child { animation-delay: .5s; }
-.hero__amp { font-family: var(--font-head); font-style: italic; font-size: .46em; color: var(--rose-amp); animation: fadeIn 1s .35s both; }
+.hero__amp { color: var(--rose-amp); animation: fadeIn 1s .35s both; }
 .hero__lede {
   font-family: var(--font-head); font-style: italic; font-size: clamp(1.2rem, 4.8vw, 1.5rem);
   color: var(--ink); margin-top: .7rem; line-height: 1.45; animation: fadeUp 1s .8s var(--ease) both;
@@ -160,8 +160,7 @@ a { color: var(--rose-deep); }
   .hero { padding: 6rem 2rem; }
   .hero__inner { flex-direction: row; justify-content: center; gap: clamp(3rem, 7vw, 6.5rem); }
   .hero__text { flex: 1 1 0; max-width: 520px; }
-  .hero__names { flex-direction: column; align-items: center; font-size: clamp(4.4rem, 7vw, 6.4rem); }
-  .hero__amp { margin: -.1em 0 -.05em; }
+  .hero__names { font-size: clamp(4.8rem, 7.4vw, 6.8rem); }
   .arch { width: min(36vw, 420px); flex: none; }
 }
 
@@ -228,8 +227,8 @@ a { color: var(--rose-deep); }
     var(--ivory);
 }
 .closing__text { font-family: var(--font-head); font-style: italic; font-size: clamp(1.3rem, 5vw, 1.7rem); line-height: 1.45; color: var(--ink); }
-.closing__names { font-family: var(--font-script); font-weight: 400; color: var(--mauve); font-size: clamp(3rem, 13vw, 4.8rem); margin: 1.2rem 0 .6rem; line-height: 1.2; }
-.closing__names span { font-family: var(--font-head); font-style: italic; font-size: .46em; color: var(--rose-amp); }
+.closing__names { font-family: var(--font-script); font-weight: 400; color: var(--mauve); font-size: clamp(3.2rem, 14vw, 5rem); margin: 1.2rem 0 .6rem; line-height: 1.2; }
+.closing__names span { color: var(--rose-amp); }
 .closing__note { font-size: .74rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------- Countdown ---------- */
