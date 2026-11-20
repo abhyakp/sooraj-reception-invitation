@@ -92,76 +92,99 @@ a { color: var(--rose-deep); }
 .spray--cl { top: -20px; left: -40px; transform: rotate(-12deg); width: clamp(130px, 30vw, 260px); }
 .spray--cr { bottom: -24px; right: -40px; transform: rotate(168deg); width: clamp(130px, 30vw, 260px); }
 
+/* ---------- Couple photo (fixed background) ----------
+   Phones/tablets: the text sits at the top and the photo below it, anchored to
+   the bottom of the screen and fading upward into blush; its height (--photo-h)
+   is set by script.js so it starts just below the date.
+   Wide screens: photo on the right, text on the left. */
+.photo-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--blush); }
+.photo-bg picture { display: contents; }
+.photo-bg__img {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  height: min(133.333vw, calc(100vh - 24rem));
+  height: min(133.333vw, var(--photo-h, calc(100svh - 24rem)));
+  width: auto; aspect-ratio: 3 / 4; max-width: none; object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%),
+                      linear-gradient(to top, #000 0%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%),
+              linear-gradient(to top, #000 0%, #000 84%, transparent 100%);
+  mask-composite: intersect;
+  animation: fadeIn 1.4s both;
+}
+.photo-bg__blur {
+  display: none; position: absolute; inset: -60px; width: calc(100% + 120px); height: calc(100% + 120px);
+  max-width: none; object-fit: cover; filter: blur(40px) saturate(.9); opacity: .55;
+}
+.photo-bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.see-through { background: transparent !important; }
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
   min-height: 100vh; min-height: 100svh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: clamp(5.5rem, 16vw, 6rem) var(--gutter) 6rem;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, .9), transparent 70%),
-    linear-gradient(180deg, var(--blush) 0%, #FBF1EF 55%, var(--ivory) 100%);
+  display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+  padding: clamp(3.2rem, 11vw, 4.4rem) var(--gutter) max(14px, env(safe-area-inset-bottom));
   text-align: center;
 }
-.hero__inner { position: relative; z-index: 1; width: 100%; max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2.4rem; }
-.hero__text { display: flex; flex-direction: column; align-items: center; }
+.hero__top, .hero__bottom {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+  text-shadow: 0 0 14px rgba(255, 255, 255, .7);
+}
+.hero .spray { width: clamp(120px, 30vw, 320px); }
+.hero .spray--tl { top: -8px; left: -20px; transform: rotate(-8deg); }
+.hero .spray--tr { top: -8px; right: -20px; transform: scaleX(-1) rotate(-8deg); }
 
-.hero__eyebrow { animation: fadeUp 1s .2s var(--ease) both; }
+.hero__eyebrow { margin-bottom: .3rem; animation: fadeUp 1s .2s var(--ease) both; }
 .hero__names {
   font-family: var(--font-script); font-weight: 400; color: var(--mauve);
-  font-size: clamp(3.6rem, 17vw, 6.2rem); line-height: 1.1;
+  font-size: clamp(3rem, 14vw, 6.2rem); line-height: 1.05;
   display: flex; flex-direction: column; align-items: center;
 }
 .hero__name { display: block; animation: nameReveal 1.3s var(--ease) both; }
 .hero__name:last-child { animation-delay: .5s; }
 .hero__amp { color: var(--rose-amp); animation: fadeIn 1s .35s both; }
 .hero__lede {
-  font-family: var(--font-head); font-style: italic; font-size: clamp(1.2rem, 4.8vw, 1.5rem);
-  color: var(--ink); margin-top: .7rem; line-height: 1.45; animation: fadeUp 1s .8s var(--ease) both;
+  font-family: var(--font-head); font-style: italic; font-size: clamp(1.15rem, 4.6vw, 1.5rem);
+  color: var(--ink); margin-top: .5rem; line-height: 1.4; animation: fadeUp 1s .8s var(--ease) both;
 }
-.hero__divider { margin-top: 1.1rem; animation: fadeIn 1.2s 1s both; }
+.hero__divider { margin-top: .7rem; height: 34px; animation: fadeIn 1.2s 1s both; }
 .hero__date {
-  margin-top: 1rem; font-size: .8rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  margin-top: .7rem; font-size: .8rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
   color: var(--rose-deep); animation: fadeIn 1.2s 1.15s both;
 }
-.hero__time { display: block; margin-top: .3rem; }
+.hero__time { display: block; margin-top: .2rem; }
 .hero__sep { display: none; }
 @media (min-width: 520px) {
   .hero__time { display: inline; margin-top: 0; }
   .hero__sep { display: inline; }
 }
 
-/* Arched photo with a fine champagne outline and flowers at its base */
-.arch { position: relative; width: min(82vw, 380px); animation: fadeUp 1.2s .4s var(--ease) both; }
-.arch picture { display: block; }
-.arch__img {
-  width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%;
-  border-radius: 1000px 1000px 14px 14px;
-  box-shadow: 0 30px 60px -34px rgba(126, 67, 87, .55);
-}
-.arch__line {
-  position: absolute; inset: -11px; border: 1px solid var(--champagne);
-  border-radius: 1000px 1000px 20px 20px; pointer-events: none;
-}
-.arch__flowers { position: absolute; width: 62%; height: auto; aspect-ratio: 240 / 200; bottom: -16%; pointer-events: none; overflow: visible; }
-.arch__flowers--l { left: -24%; transform: rotate(-4deg); }
-.arch__flowers--r { right: -24%; transform: scaleX(-1) rotate(-14deg); }
-
 .scroll-cue {
-  position: absolute; z-index: 1; bottom: max(18px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  margin-top: 1rem;
+  display: flex; flex-direction: column; align-items: center; gap: .3rem;
   color: var(--sage-deep); text-decoration: none; font-size: .64rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase;
   min-width: 44px; padding: 4px; animation: fadeIn 1s 1.6s both;
 }
-.scroll-cue__line { width: 1px; height: 34px; background: linear-gradient(var(--rose), transparent); position: relative; overflow: hidden; }
+.scroll-cue__line { width: 1px; height: 28px; background: linear-gradient(var(--rose), transparent); position: relative; overflow: hidden; }
 .scroll-cue__line::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--rose-deep); animation: scrollLine 2.2s ease-in-out infinite; }
 
-@media (min-width: 900px) {
-  .hero { padding: 6rem 2rem; }
-  .hero__inner { flex-direction: row; justify-content: center; gap: clamp(3rem, 7vw, 6.5rem); }
-  .hero__text { flex: 1 1 0; max-width: 520px; }
+/* Wide screens: photo on the right with feathered edges, text on the left */
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+  .photo-bg__blur { display: block; }
+  .photo-bg__img {
+    inset: 0 4vw 0 auto; left: auto; bottom: 0; transform: none; width: auto; height: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 88%, transparent 100%),
+                        linear-gradient(to bottom, transparent 0%, #000 8%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 88%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, #000 8%, #000 90%, transparent 100%);
+  }
+  .photo-bg::after { background: linear-gradient(90deg, var(--blush) 0%, rgba(248, 232, 230, .92) 38%, rgba(248, 232, 230, 0) 62%); }
+  .hero { justify-content: center; align-items: flex-start; padding: 5rem 2rem; }
+  .hero__top, .hero__bottom { width: min(46vw, 640px); margin-left: 5vw; }
   .hero__names { font-size: clamp(4.8rem, 7.4vw, 6.8rem); }
-  .arch { width: min(36vw, 420px); flex: none; }
+  .hero .spray--tr { top: auto; right: auto; bottom: -20px; left: -20px; transform: rotate(-80deg); }
+  .closing .container { margin-left: 5vw; }
 }
 
 /* ---------- Save the date ---------- */
@@ -221,11 +244,14 @@ a { color: var(--rose-deep); }
 .btn:active { transform: translateY(0); }
 
 /* ---------- Closing ---------- */
-.closing {
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(248, 232, 230, .8), transparent 75%),
-    var(--ivory);
+.closing.see-through { padding: clamp(7rem, 32vh, 13rem) 0; }
+.closing__panel {
+  overflow: visible; padding-top: 3rem; padding-bottom: 2.6rem; width: calc(100% - 2 * var(--gutter));
+  background: rgba(255, 251, 248, .84); border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 30px 60px -38px rgba(126, 67, 87, .45);
 }
+.closing__panel > :not(.spray) { position: relative; z-index: 1; }
 .closing__text { font-family: var(--font-head); font-style: italic; font-size: clamp(1.3rem, 5vw, 1.7rem); line-height: 1.45; color: var(--ink); }
 .closing__names { font-family: var(--font-script); font-weight: 400; color: var(--mauve); font-size: clamp(3.2rem, 14vw, 5rem); margin: 1.2rem 0 .6rem; line-height: 1.2; }
 .closing__names span { color: var(--rose-amp); }

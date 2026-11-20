@@ -32,6 +32,25 @@
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------------
+     BACKGROUND PHOTO HEIGHT (phones / portrait)
+     The photo sits below the hero text, anchored to the bottom of the screen,
+     so nothing covers the couple. Its height is the space left under the
+     text, which varies with screen size and font loading, so measure it.
+     ------------------------------------------------------------------------ */
+  var wideQuery = window.matchMedia('(min-width: 900px) and (min-aspect-ratio: 4/3)');
+  var heroText = document.querySelector('.hero__bottom');
+  function fitPhoto() {
+    var root = document.documentElement;
+    if (!heroText || wideQuery.matches) { root.style.removeProperty('--photo-h'); return; }
+    var bottom = heroText.getBoundingClientRect().bottom + (window.scrollY || window.pageYOffset);
+    root.style.setProperty('--photo-h', Math.max(260, Math.round(window.innerHeight - bottom + 24)) + 'px');
+  }
+  fitPhoto();
+  window.addEventListener('resize', fitPhoto);
+  window.addEventListener('load', fitPhoto);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPhoto);
+
+  /* ------------------------------------------------------------------------
      BACK-TO-TOP
      ------------------------------------------------------------------------ */
   var backToTop = document.getElementById('backToTop');

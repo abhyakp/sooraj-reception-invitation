@@ -33,11 +33,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="preload" as="image" type="image/webp" href="assets/images/couple-720.webp" imagesrcset="assets/images/couple-720.webp 720w, assets/images/couple-1200.webp 1200w" imagesizes="(min-width: 900px) 40vw, 82vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="assets/images/couple-720.webp" imagesrcset="assets/images/couple-720.webp 720w, assets/images/couple-1200.webp 1200w" imagesizes="(min-width: 900px) and (min-aspect-ratio: 4/3) 75vh, (min-width: 600px) 60vh, 100vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Allura&family=Montserrat:wght@300;400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=9">
 
   <script type="application/ld+json">
   {
@@ -69,6 +69,15 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the invitation</a>
+
+  <!-- ===== Couple photo: fixed page background ===== -->
+  <div class="photo-bg">
+    <img class="photo-bg__blur" src="assets/images/couple-blur.jpg" width="240" height="320" alt="" aria-hidden="true" decoding="async">
+    <picture>
+      <source type="image/webp" srcset="assets/images/couple-720.webp 720w, assets/images/couple-1200.webp 1200w" sizes="(min-width: 900px) and (min-aspect-ratio: 4/3) 75vh, (min-width: 600px) 60vh, 100vw">
+      <img class="photo-bg__img" src="assets/images/couple-1200.jpg" width="1200" height="1600" alt="Sooraj and Sivakami sitting together and smiling" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
 
   <!-- ===== Floral sprite (decorative, reused via <use>) ===== -->
   <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
@@ -143,37 +152,27 @@
   <main id="main">
 
     <!-- ===== Hero ===== -->
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero see-through" id="top" aria-labelledby="hero-title">
       <svg class="spray spray--tl" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
-      <svg class="spray spray--br" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
+      <svg class="spray spray--tr" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
 
-      <div class="hero__inner">
-        <div class="hero__text">
-          <p class="eyebrow hero__eyebrow">Together with their families</p>
-          <h1 class="hero__names" id="hero-title">
-            <span class="hero__name">Sooraj <span class="hero__amp" aria-label="and">&amp;</span></span>
-            <span class="hero__name">Sivakami</span>
-          </h1>
-          <p class="hero__lede">request the pleasure of your company<br> at their wedding reception</p>
-          <svg class="divider hero__divider" aria-hidden="true" focusable="false"><use href="#f-divider"/></svg>
-          <p class="hero__date">Sunday &middot; 31 January 2027 <span class="hero__time"><span class="hero__sep" aria-hidden="true">&middot; </span>6:00 PM</span></p>
-        </div>
-
-        <figure class="arch">
-          <span class="arch__line" aria-hidden="true"></span>
-          <picture>
-            <source type="image/webp" srcset="assets/images/couple-720.webp 720w, assets/images/couple-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 82vw">
-            <img class="arch__img" src="assets/images/couple-1200.jpg" width="1200" height="1500" alt="Sooraj and Sivakami smiling together" fetchpriority="high" decoding="async">
-          </picture>
-          <svg class="arch__flowers arch__flowers--l" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
-          <svg class="arch__flowers arch__flowers--r" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
-        </figure>
+      <div class="hero__top">
+        <p class="eyebrow hero__eyebrow">Together with their families</p>
+        <h1 class="hero__names" id="hero-title">
+          <span class="hero__name">Sooraj <span class="hero__amp" aria-label="and">&amp;</span></span>
+          <span class="hero__name">Sivakami</span>
+        </h1>
       </div>
 
-      <a href="#date" class="scroll-cue">
-        <span class="scroll-cue__text">Scroll</span>
-        <span class="scroll-cue__line" aria-hidden="true"></span>
-      </a>
+      <div class="hero__bottom">
+        <p class="hero__lede">request the pleasure of your company<br> at their wedding reception</p>
+        <svg class="divider hero__divider" aria-hidden="true" focusable="false"><use href="#f-divider"/></svg>
+        <p class="hero__date">Sunday &middot; 31 January 2027 <span class="hero__time"><span class="hero__sep" aria-hidden="true">&middot; </span>6:00 PM</span></p>
+        <a href="#date" class="scroll-cue">
+          <span class="scroll-cue__text">Scroll</span>
+          <span class="scroll-cue__line" aria-hidden="true"></span>
+        </a>
+      </div>
     </section>
 
     <!-- ===== Save the date ===== -->
@@ -228,10 +227,10 @@
     </section>
 
     <!-- ===== Closing ===== -->
-    <section class="section closing" id="closing" aria-labelledby="closing-title">
-      <svg class="spray spray--cl" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
-      <svg class="spray spray--cr" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
-      <div class="container container--narrow">
+    <section class="section closing see-through" id="closing" aria-labelledby="closing-title">
+      <div class="container container--narrow closing__panel">
+        <svg class="spray spray--cl" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
+        <svg class="spray spray--cr" aria-hidden="true" focusable="false"><use href="#f-spray"/></svg>
         <p class="closing__text reveal">Your presence and blessings will make our celebration even more special.</p>
         <h2 class="closing__names reveal" id="closing-title">Sooraj <span aria-label="and">&amp;</span> Sivakami</h2>
         <p class="closing__note reveal">We request your gracious presence and wishes only.</p>
@@ -257,6 +256,6 @@
     <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
   </a>
 
-  <script src="js/script.js?v=2" defer></script>
+  <script src="js/script.js?v=4" defer></script>
 </body>
 </html>

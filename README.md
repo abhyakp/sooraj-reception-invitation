@@ -17,7 +17,7 @@ reception-invitation/
 
 ## Page sections
 
-1. Opening — names, "request the pleasure of your company at their wedding reception", date/time, couple photo in a floral arch
+1. Opening — names, "request the pleasure of your company at their wedding reception", date/time over the couple photo, which is a fixed page background (it shows again behind the closing panel)
 2. Save the date — January · Sunday | 31 | 6:00 PM · 2027
 3. Reception details — date, time, venue, Get Directions (Google Maps)
 4. Closing — message, names, countdown to 6:00 PM IST
@@ -73,7 +73,7 @@ The page is indexable by default. To keep it out of Google while still sharing b
 - **Colours and fonts**: CSS variables at the top of `css/style.css` (blush, rose, mauve, sage). Fonts: Allura (names and script headings), Cormorant Garamond, Montserrat.
 - **Flowers**: all florals are inline SVG symbols in the sprite at the top of `index.html` (`f-rose`, `f-rose-peach`, `f-blossom`, `f-bud`, `f-leaf`, `f-euca`, composed into `f-spray` and `f-divider`). No image downloads.
 - **Text**: plain HTML in `index.html`; countdown messages in `js/script.js`.
-- **Couple photo**: shown in the arch. Replace `assets/images/couple-720.webp` (720×900), `couple-1200.webp` and `couple-1200.jpg` (1200×1500) at the same names, keeping a 4:5 crop.
+- **Couple photo**: a fixed background (`.photo-bg`). On phones/tablets the text sits at the top and the photo below it, anchored to the bottom of the screen and fading upward into blush; `js/script.js` sets `--photo-h` so it starts just below the date. On wide screens it sits on the right with feathered edges over a blurred fill. Replace `assets/images/couple-720.webp` (720×960), `couple-1200.webp` and `couple-1200.jpg` (1200×1600) and `couple-blur.jpg` (240×320, blurred) at the same names, keeping a 3:4 crop.
 - **Share image / icons**: `assets/images/og-image.jpg` (1200×630) and `assets/icons/*` use the same photo and rose artwork; replace at the same names.
 - After changing CSS/JS, bump the `?v=` number on their links in `index.html` so browsers fetch the new files.
 
